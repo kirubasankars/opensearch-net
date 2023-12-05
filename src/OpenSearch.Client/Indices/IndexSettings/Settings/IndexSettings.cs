@@ -151,5 +151,6 @@ namespace OpenSearch.Client
 		/// <inheritdoc cref="IIndexSettings.SoftDeletes" />
 		public IndexSettingsDescriptor SoftDeletes(Func<SoftDeleteSettingsDescriptor, ISoftDeleteSettings> selector) =>
 			Assign(selector, (a, v) => a.SoftDeletes = v?.Invoke(new SoftDeleteSettingsDescriptor()));
+
 	}
 }

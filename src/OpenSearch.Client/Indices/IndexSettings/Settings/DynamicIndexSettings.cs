@@ -146,6 +146,9 @@ namespace OpenSearch.Client
 		/// name `_none` indicates no ingest pipeline will run.
 		/// </summary>
 		string FinalPipeline { get; set; }
+
+		/// <summary> search pipeline settings for the index </summary>
+		IIndexSearch Search { get; set; }
 	}
 
 	/// <inheritdoc />
@@ -227,6 +230,10 @@ namespace OpenSearch.Client
 
 		/// <summary> Add any setting to the index </summary>
 		public void Add(string setting, object value) => BackingDictionary[setting] = value;
+
+
+		/// <inheritdoc />
+		public IIndexSearch Search { get; set; }
 	}
 
 	/// <inheritdoc cref="IDynamicIndexSettings" />
@@ -318,5 +325,9 @@ namespace OpenSearch.Client
 		/// <inheritdoc cref="IDynamicIndexSettings.Similarity" />
 		public TDescriptor Similarity(Func<SimilaritiesDescriptor, IPromise<ISimilarities>> selector) =>
 			Assign(selector, (a, v) => a.Similarity = v?.Invoke(new SimilaritiesDescriptor())?.Value);
+
+		/// <inheritdoc cref="IDynamicIndexSettings.Search" />
+		public TDescriptor Search(Func<IndexSearchDescriptor, IIndexSearch> selector) =>
+			Assign(selector, (a, v) => a.Search = v?.Invoke(new IndexSearchDescriptor()));
 	}
 }
