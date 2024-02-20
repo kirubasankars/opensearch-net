@@ -175,28 +175,35 @@ namespace OpenSearch.OpenSearch.Ephemeral.Tasks
 			ExecuteBinaryInternal(config, writer, binary, description, null, arguments);
 
 		protected static void ExecuteBinary(EphemeralClusterConfiguration config, IConsoleLineHandler writer,
-			string binary, string description, StartedHandler startedHandler, params string[] arguments) =>
-			ExecuteBinaryInternal(config, writer, binary, description, startedHandler, arguments);
+			string binary, string description, IDictionary<string, string> environmentVariables,
+			params string[] arguments) =>
+			ExecuteBinaryInternal(config, writer, binary, description, environmentVariables, arguments);
 
 		private static void ExecuteBinaryInternal(EphemeralClusterConfiguration config, IConsoleLineHandler writer,
-			string binary, string description, StartedHandler startedHandler, params string[] arguments)
+			string binary, string description, IDictionary<string, string> environmentVariables, params string[] arguments)
 		{
 			var command = $"{{{binary}}} {{{string.Join(" ", arguments)}}}";
 			writer?.WriteDiagnostic($"{{{nameof(ExecuteBinary)}}} starting process [{description}] {command}");
 
+			var environment = new Dictionary<string, string>
+			{
+				{config.FileSystem.ConfigEnvironmentVariableName, config.FileSystem.ConfigPath},
+				{"OPENSEARCH_HOME", config.FileSystem.OpenSearchHome}
+			};
+
+			if (environmentVariables != null)
+			{
+				foreach (var kvp in environmentVariables)
+					environment[kvp.Key] = kvp.Value;
+			}
+
 			var timeout = TimeSpan.FromSeconds(420);
 			var processStartArguments = new StartArguments(binary, arguments)
 			{
-				Environment = new Dictionary<string, string>
-				{
-					{config.FileSystem.ConfigEnvironmentVariableName, config.FileSystem.ConfigPath},
-					{"OPENSEARCH_HOME", config.FileSystem.OpenSearchHome},
-				}
+				Environment = environment
 			};
 
-			var result = startedHandler != null
-				? Proc.Start(processStartArguments, timeout, new ConsoleOutColorWriter(), startedHandler)
-				: Proc.Start(processStartArguments, timeout, new ConsoleOutColorWriter());
+			var result = Proc.Start(processStartArguments, timeout, new ConsoleOutColorWriter());
 
 			if (!result.Completed)
 				throw new Exception($"Timeout while executing {description} exceeded {timeout}");

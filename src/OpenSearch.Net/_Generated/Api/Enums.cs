@@ -208,8 +208,11 @@ namespace OpenSearch.Net
         [EnumMember(Value = "indexing_pressure")]
         IndexingPressure = 1 << 10,
 
+        [EnumMember(Value = "search_pipeline")]
+        SearchPipeline = 1 << 11,
+
         [EnumMember(Value = "_all")]
-        All = 1 << 11
+        All = 1 << 12
     }
 
     [Flags, StringEnum]
@@ -239,6 +242,56 @@ namespace OpenSearch.Net
 
         [EnumMember(Value = "none")]
         None
+    }
+
+    [StringEnum]
+    public enum Bytes
+    {
+        [EnumMember(Value = "b")]
+        B,
+
+        [EnumMember(Value = "k")]
+        K,
+
+        [EnumMember(Value = "kb")]
+        Kb,
+
+        [EnumMember(Value = "m")]
+        M,
+
+        [EnumMember(Value = "mb")]
+        Mb,
+
+        [EnumMember(Value = "g")]
+        G,
+
+        [EnumMember(Value = "gb")]
+        Gb,
+
+        [EnumMember(Value = "t")]
+        T,
+
+        [EnumMember(Value = "tb")]
+        Tb,
+
+        [EnumMember(Value = "p")]
+        P,
+
+        [EnumMember(Value = "pb")]
+        Pb
+    }
+
+    [StringEnum]
+    public enum Health
+    {
+        [EnumMember(Value = "green")]
+        Green,
+
+        [EnumMember(Value = "yellow")]
+        Yellow,
+
+        [EnumMember(Value = "red")]
+        Red
     }
 
     [StringEnum]
@@ -359,6 +412,8 @@ namespace OpenSearch.Net
                 typeof(ExpandWildcards),
                 e => GetStringValue((ExpandWildcards)e)
             );
+            EnumStringResolvers.TryAdd(typeof(Bytes), e => GetStringValue((Bytes)e));
+            EnumStringResolvers.TryAdd(typeof(Health), e => GetStringValue((Health)e));
             EnumStringResolvers.TryAdd(
                 typeof(ClusterHealthLevel),
                 e => GetStringValue((ClusterHealthLevel)e)
@@ -496,6 +551,8 @@ namespace OpenSearch.Net
                 list.Add("discovery");
             if ((enumValue & NodesStatsMetric.IndexingPressure) != 0)
                 list.Add("indexing_pressure");
+            if ((enumValue & NodesStatsMetric.SearchPipeline) != 0)
+                list.Add("search_pipeline");
             return string.Join(",", list);
         }
 
@@ -526,6 +583,54 @@ namespace OpenSearch.Net
             }
             throw new ArgumentException(
                 $"'{enumValue.ToString()}' is not a valid value for enum 'ExpandWildcards'"
+            );
+        }
+
+        public static string GetStringValue(this Bytes enumValue)
+        {
+            switch (enumValue)
+            {
+                case Bytes.B:
+                    return "b";
+                case Bytes.K:
+                    return "k";
+                case Bytes.Kb:
+                    return "kb";
+                case Bytes.M:
+                    return "m";
+                case Bytes.Mb:
+                    return "mb";
+                case Bytes.G:
+                    return "g";
+                case Bytes.Gb:
+                    return "gb";
+                case Bytes.T:
+                    return "t";
+                case Bytes.Tb:
+                    return "tb";
+                case Bytes.P:
+                    return "p";
+                case Bytes.Pb:
+                    return "pb";
+            }
+            throw new ArgumentException(
+                $"'{enumValue.ToString()}' is not a valid value for enum 'Bytes'"
+            );
+        }
+
+        public static string GetStringValue(this Health enumValue)
+        {
+            switch (enumValue)
+            {
+                case Health.Green:
+                    return "green";
+                case Health.Yellow:
+                    return "yellow";
+                case Health.Red:
+                    return "red";
+            }
+            throw new ArgumentException(
+                $"'{enumValue.ToString()}' is not a valid value for enum 'Health'"
             );
         }
 

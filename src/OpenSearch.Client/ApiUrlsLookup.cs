@@ -46,29 +46,6 @@ namespace OpenSearch.Client
 	internal static partial class ApiUrlsLookups
 	{
 		internal static ApiUrls NoNamespaceBulk = new ApiUrls(new[]{"_bulk", "{index}/_bulk"});
-		internal static ApiUrls CatAliases = new ApiUrls(new[]{"_cat/aliases", "_cat/aliases/{name}"});
-		internal static ApiUrls CatAllocation = new ApiUrls(new[]{"_cat/allocation", "_cat/allocation/{node_id}"});
-		internal static ApiUrls CatCount = new ApiUrls(new[]{"_cat/count", "_cat/count/{index}"});
-		///<remarks>Introduced in OpenSearch 2.0 instead of <see cref="CatMaster"/></remarks>
-		internal static ApiUrls CatClusterManager = new ApiUrls(new[]{"_cat/cluster_manager"});
-		internal static ApiUrls CatFielddata = new ApiUrls(new[]{"_cat/fielddata", "_cat/fielddata/{fields}"});
-		internal static ApiUrls CatHealth = new ApiUrls(new[]{"_cat/health"});
-		internal static ApiUrls CatHelp = new ApiUrls(new[]{"_cat"});
-		internal static ApiUrls CatIndices = new ApiUrls(new[]{"_cat/indices", "_cat/indices/{index}"});
-		///<remarks>Deprecated as of OpenSearch 2.0, use <see cref="CatClusterManager"/> instead</remarks>
-		internal static ApiUrls CatMaster = new ApiUrls(new[]{"_cat/master"});
-		internal static ApiUrls CatNodeAttributes = new ApiUrls(new[]{"_cat/nodeattrs"});
-		internal static ApiUrls CatNodes = new ApiUrls(new[]{"_cat/nodes"});
-		internal static ApiUrls CatPendingTasks = new ApiUrls(new[]{"_cat/pending_tasks"});
-		internal static ApiUrls CatPlugins = new ApiUrls(new[]{"_cat/plugins"});
-		internal static ApiUrls CatRecovery = new ApiUrls(new[]{"_cat/recovery", "_cat/recovery/{index}"});
-		internal static ApiUrls CatRepositories = new ApiUrls(new[]{"_cat/repositories"});
-		internal static ApiUrls CatSegments = new ApiUrls(new[]{"_cat/segments", "_cat/segments/{index}"});
-		internal static ApiUrls CatShards = new ApiUrls(new[]{"_cat/shards", "_cat/shards/{index}"});
-		internal static ApiUrls CatSnapshots = new ApiUrls(new[]{"_cat/snapshots", "_cat/snapshots/{repository}"});
-		internal static ApiUrls CatTasks = new ApiUrls(new[]{"_cat/tasks"});
-		internal static ApiUrls CatTemplates = new ApiUrls(new[]{"_cat/templates", "_cat/templates/{name}"});
-		internal static ApiUrls CatThreadPool = new ApiUrls(new[]{"_cat/thread_pool", "_cat/thread_pool/{thread_pool_patterns}"});
 		internal static ApiUrls NoNamespaceClearScroll = new ApiUrls(new[]{"_search/scroll"});
 		internal static ApiUrls NoNamespaceCount = new ApiUrls(new[]{"_count", "{index}/_count"});
 		internal static ApiUrls NoNamespaceCreate = new ApiUrls(new[]{"{index}/_create/{id}"});

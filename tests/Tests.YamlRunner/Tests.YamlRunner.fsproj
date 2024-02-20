@@ -29,13 +29,13 @@
   </ItemGroup>
  
   <ItemGroup>
-    <PackageReference Update="FSharp.Core" Version="8.0.100" />
+    <PackageReference Update="FSharp.Core" Version="8.0.101" />
     
-    <PackageReference Include="Argu" Version="6.1.1" />
+    <PackageReference Include="Argu" Version="6.1.5" />
     <PackageReference Include="FSharp.Data" Version="6.3.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="SemanticVersioning" Version="2.0.2" />
-    <PackageReference Include="SharpYaml" Version="2.1.0" />
+    <PackageReference Include="SharpYaml" Version="2.1.1" />
     <PackageReference Include="ShellProgressBar" Version="5.2.0" />
   </ItemGroup>
 

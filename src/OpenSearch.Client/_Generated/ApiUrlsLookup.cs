@@ -45,6 +45,67 @@ namespace OpenSearch.Client
 {
     internal static partial class ApiUrlsLookups
     {
+        internal static readonly ApiUrls CatAliases =
+            new(new[] { "_cat/aliases", "_cat/aliases/{name}" });
+
+        internal static readonly ApiUrls CatAllPitSegments =
+            new(new[] { "_cat/pit_segments/_all" });
+
+        internal static readonly ApiUrls CatAllocation =
+            new(new[] { "_cat/allocation", "_cat/allocation/{node_id}" });
+
+        internal static readonly ApiUrls CatClusterManager = new(new[] { "_cat/cluster_manager" });
+
+        internal static readonly ApiUrls CatCount =
+            new(new[] { "_cat/count", "_cat/count/{index}" });
+
+        internal static readonly ApiUrls CatFielddata =
+            new(new[] { "_cat/fielddata", "_cat/fielddata/{fields}" });
+
+        internal static readonly ApiUrls CatHealth = new(new[] { "_cat/health" });
+
+        internal static readonly ApiUrls CatHelp = new(new[] { "_cat" });
+
+        internal static readonly ApiUrls CatIndices =
+            new(new[] { "_cat/indices", "_cat/indices/{index}" });
+
+        internal static readonly ApiUrls CatMaster = new(new[] { "_cat/master" });
+
+        internal static readonly ApiUrls CatNodeAttributes = new(new[] { "_cat/nodeattrs" });
+
+        internal static readonly ApiUrls CatNodes = new(new[] { "_cat/nodes" });
+
+        internal static readonly ApiUrls CatPendingTasks = new(new[] { "_cat/pending_tasks" });
+
+        internal static readonly ApiUrls CatPitSegments = new(new[] { "_cat/pit_segments" });
+
+        internal static readonly ApiUrls CatPlugins = new(new[] { "_cat/plugins" });
+
+        internal static readonly ApiUrls CatRecovery =
+            new(new[] { "_cat/recovery", "_cat/recovery/{index}" });
+
+        internal static readonly ApiUrls CatRepositories = new(new[] { "_cat/repositories" });
+
+        internal static readonly ApiUrls CatSegmentReplication =
+            new(new[] { "_cat/segment_replication", "_cat/segment_replication/{index}" });
+
+        internal static readonly ApiUrls CatSegments =
+            new(new[] { "_cat/segments", "_cat/segments/{index}" });
+
+        internal static readonly ApiUrls CatShards =
+            new(new[] { "_cat/shards", "_cat/shards/{index}" });
+
+        internal static readonly ApiUrls CatSnapshots =
+            new(new[] { "_cat/snapshots", "_cat/snapshots/{repository}" });
+
+        internal static readonly ApiUrls CatTasks = new(new[] { "_cat/tasks" });
+
+        internal static readonly ApiUrls CatTemplates =
+            new(new[] { "_cat/templates", "_cat/templates/{name}" });
+
+        internal static readonly ApiUrls CatThreadPool =
+            new(new[] { "_cat/thread_pool", "_cat/thread_pool/{thread_pool_patterns}" });
+
         internal static readonly ApiUrls ClusterAllocationExplain =
             new(new[] { "_cluster/allocation/explain" });
 
